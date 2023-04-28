@@ -25,51 +25,77 @@ dark: 'darkgreen',
 // Додаткові кольори для інших категорій можна додати тут
 };
 function PokemonCard({ title, imageUrl, categories }) {
-const categoryColors = {
-grass: 'green',
-poison: 'purple',
-fire: 'darkred',
-water: 'darkblue',
-flying: 'green',
-bug: 'brown',
-normal: 'black',
-electric: 'yellow',
-ground: 'brown',
-fighting: 'red',
-psychic: 'darkpurple',
-rock: 'gray',
-steel: 'gray',
-ice: 'whiteblue',
-ghost: 'white',
-dragon: 'red',
-dark: 'darkgreen',
-// Додаткові кольори для інших категорій можна додати тут
-};
+  const [showCharacteristics, setShowCharacteristics] = useState(false);
+  const [characteristics, setCharacteristics] = useState(null);
 
-return (
-<div className="pokemon-card">
-<img src={imageUrl} alt={title} />
-<h1>{title}</h1>
-<div>
-{categories.map((category, index) => (
-<span
-key={index}
-style={{
-backgroundColor: categoryColors[category],
-color: '#fff',
-padding: '4px 8px',
-borderRadius: '4px',
-marginRight: '8px',
-}}
->
-{category}
-</span>
-))}
-</div>
-</div>
-);
+  const handleShowCharacteristics = async () => {
+    if (characteristics) {
+      setShowCharacteristics(!showCharacteristics);
+      return;
+    }
+
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${title}`);
+    const data = await response.json();
+    setCharacteristics(data);
+    setShowCharacteristics(true);
+  };
+
+  const categoryColors = {
+    grass: 'green',
+    poison: 'purple',
+    fire: 'darkred',
+    water: 'darkblue',
+    flying: 'green',
+    bug: 'brown',
+    normal: 'black',
+    electric: 'yellow',
+    ground: 'brown',
+    fighting: 'red',
+    psychic: 'darkpurple',
+    rock: 'gray',
+    steel: 'gray',
+    ice: 'whiteblue',
+    ghost: 'white',
+    dragon: 'red',
+    dark: 'darkgreen',
+    // Додаткові кольори для інших категорій можна додати тут
+  };
+
+  return (
+    <div className="pokemon-card" onClick={handleShowCharacteristics}>
+      <img src={imageUrl} alt={title} />
+      <h1>{title}</h1>
+      <div>
+        {categories.map((category, index) => (
+          <span
+            key={index}
+            style={{
+              backgroundColor: categoryColors[category],
+              color: '#fff',
+              padding: '4px 8px',
+              borderRadius: '4px',
+              marginRight: '8px',
+            }}
+          >
+            {category}
+          </span>
+        ))}
+      </div>
+      {showCharacteristics && characteristics && (
+        <div>
+          <p style={{color: '#fff'}}>Height: {characteristics.height}</p>
+          <p style={{color: '#fff'}}>Weight: {characteristics.weight}</p>
+          <p style={{color: '#fff'}}>Abilities:</p>
+          <ul>
+            {characteristics.abilities.map((ability) => (
+              <li style={{color: '#fff'}} key={ability.ability.name}>{ability.ability.name}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
-
 const pokemonContainerStyles = {
 display: 'grid',
 gridTemplateColumns: 'repeat(3, 1fr)', // 3 колонки
