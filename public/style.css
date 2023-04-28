@@ -101,6 +101,7 @@ body {
   width: 100%;
 }
 .checkboxes-container label {
+  transition: 0.5s;
   display: flex;
   align-items: center;
   margin-bottom: 8px;
@@ -109,6 +110,7 @@ body {
 }
 
 .checkboxes-container input[type="checkbox"] {
+  transition: 0.5s;
   width: 20px;
   height: 20px;
   margin-right: 8px;
@@ -121,10 +123,12 @@ body {
 }
 
 .checkboxes-container input[type="checkbox"]:checked {
+  transition: 0.5s;
   border-color: white;
   background-color: darkblue;
 }
 .checkboxes-container input[type="checkbox"]:checked::after {
+  transition: 0.5s;
   content: '\2713';
   color: white;
   display: flex;
@@ -149,6 +153,7 @@ body {
 
 /* Кнопка фільтрів */
 button {
+  transition: 0.5s;
   scale: 1;
   background-color: #4CAF50;
   border: none;
@@ -163,11 +168,13 @@ button {
 }
 
 button:hover {
+  transition: 0.5s;
   scale: 0.9;
   background-color: #3e8e41;
 }
 
 button:active {
+  transition: 0.5s;
   scale: 0.8;
   background-color: #2f6c2f;
 }
