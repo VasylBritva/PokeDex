@@ -45,9 +45,8 @@ body {
   font-size: 16px;
   width: 300px;
 }
-
 .search-container input[type="text"]::placeholder {
-  color: #ccc;
+  color: gray;
 }
 
 .search-container .buttons-container {
@@ -77,30 +76,61 @@ body {
   color: #fff;
 }
 
-.search-container .checkboxes-container input[type="checkbox"] {
-  margin-right: 10px;
-  cursor: pointer;
+
+.checkboxes-container {
+  margin-top: 1%;
+  padding-top: 1%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 10px;
+}
+.buttons-container {
+  scale: 1.2;
+  margin-bottom: 2%;
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+}
+.checkboxes-container label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  width: 100%;
+
 }
 
-.search-container .checkboxes-container input[type="checkbox"]:checked + span {
-  background-color: #fff;
-  color: #574b6d;
+.checkboxes-container input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  appearance: none;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  line-height: 20px;
+  transition: border-color 0.2s ease-in-out;
 }
 
-.search-container .checkboxes-container span {
-  display: inline-block;
-  background-color: #574b6d;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 10px;
-  font-size: 16px;
-  cursor: pointer;
+.checkboxes-container input[type="checkbox"]:checked {
+  border-color: white;
+  background-color: darkblue;
+}
+.checkboxes-container input[type="checkbox"]:checked::after {
+  content: '\2713';
+  color: white;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
 }
 
-.search-container .checkboxes-container span:hover {
-  background-color: #7f6b96;
+.checkboxes-container input[type="checkbox"]:focus {
+  border-color: #6C63FF;
 }
+
+
 
 /* Стилі для контейнера покемонів */
 .pokemon-container {
@@ -109,13 +139,27 @@ body {
   grid-gap: 20px;
 }
 
-.checkboxes-container {
-  margin-top: 1%;
-  padding-top: 1%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: 10px;
-  margin-right: 10px;
-  border: 2px solid #fff;
-  border-radius: 3px;
+/* Кнопка фільтрів */
+button {
+  scale: 1;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  scale: 0.9;
+  background-color: #3e8e41;
+}
+
+button:active {
+  scale: 0.8;
+  background-color: #2f6c2f;
 }
